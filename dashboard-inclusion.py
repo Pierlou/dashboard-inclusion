@@ -21,7 +21,8 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 print('Loading services')
 services = pd.read_csv(
-    'services_enrichis_insee.csv',
+    # 'services_enrichis_insee.csv',
+    'https://demo-static.data.gouv.fr/resources/utils-fichiers-dashboard-inclusion/20230728-131514/services-enrichis-insee.csv',
     dtype=str
 )
 
@@ -55,13 +56,6 @@ departements = departements.drop('geometry', axis=1)
 # communes = communes[['code', 'nom', 'departement' ,'region', 'epci', 'geometry']]
 # communes = communes.loc[~(communes['code'].isin(['75056', '69123', '13055']))]
 # communes.loc[~(communes.geometry.is_valid), 'geometry'] = communes.loc[~(communes.geometry.is_valid), 'geometry'].buffer(0)
-
-
-services = pd.read_csv(
-    # 'services_enrichis_insee.csv',
-    'https://demo-static.data.gouv.fr/resources/utils-fichiers-dashboard-inclusion/20230728-131514/services-enrichis-insee.csv',
-    dtype=str
-)
 
 services_cols = {
     'contact_public': str,
